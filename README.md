@@ -2,7 +2,7 @@
 
 There is no real theme to this game other than the technical requirement that it should use
 tiles and some sort of tile layout engine as part of the game. The tile map that you use must
-be larger than the screen - this in turn implies that you do some kind of screen or camera 
+be larger than the screen - this in turn implies that you do some kind of screen or camera
 management.
 You should design your game for a play experience of roughly one to three minutes.
 ## Technical Objectives

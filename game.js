@@ -105,7 +105,7 @@ function moveEnemy() {
   else if(enemy.position.y > player.position.y) {
     enemy.position.y = enemy.position.y - 1 * enemyProjectileSpeed;
   }
-} 
+}
 
 //Collision Detection & monster following player movement
 
@@ -114,7 +114,7 @@ function collisionDetection(first, second) {
   var secondBounds = second.getBounds();
 
   return firstBounds.x + firstBounds.width > secondBounds.x
-      && firstBounds.x < secondBounds.x + secondBounds.width 
+      && firstBounds.x < secondBounds.x + secondBounds.width
       && firstBounds.y + firstBounds.height > secondBounds.y
       && firstBounds.y < secondBounds.y + secondBounds.height;
 }
@@ -151,7 +151,7 @@ function incrementProjectileSpeed()
   {
     enemySpeed = enemySpeed + 0.1;
   }
-}  
+}
 
 
 var treasure_Score = 0;
@@ -166,7 +166,7 @@ treasureScoreText.position.y = 30;
 //Increases score by one each time Astro finds treasure
 function updateScore()
 {
-  
+
     score += 1
     treasureScoreText.text = "Treasures: " + gameScore;
 
@@ -176,7 +176,7 @@ function updateScore()
       cheerSound.play();
       endGame();
     }
-  
+
 }
 
 
