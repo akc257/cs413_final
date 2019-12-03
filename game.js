@@ -349,9 +349,18 @@ function ready() {
 
   boat.play();
 
+  monster = new PIXI.extras.MovieClip(frames3);
+  monster.animationSpeed = .1;
+  monster.scale.set(0.15, 0.15);
+  monster.position.x = 346;
+  monster.position.y = 200;
+
+  monster.play();
+
   var entity_layer = world.getObject("GameObjects");
   entity_layer.addChild(player);
   entity_layer.addChild(boat);
+  entity_layer.addChild(monster);
 
   animate();
   update();
