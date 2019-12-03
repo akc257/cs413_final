@@ -335,7 +335,7 @@ function ready() {
   player.animationSpeed = .1;
 
   // orient player
-  player.scale.set(0.1, 0.1);
+  player.scale.set(2, 2);
   player.position.x = 240;
   player.position.y = 220;
 
