@@ -413,6 +413,7 @@ PIXI.loader
   .add('map', 'map.png')
   .add('assets.json')
   .add('assets_boat.json')
+  .add('assets_treasure.json')
   .load(ready);
 
 function ready() {
@@ -438,23 +439,23 @@ function ready() {
     frames3.push(PIXI.Texture.fromFrame("monster" + i + ".png"));
   }
 
-  // var frames4 = [];
-  // for(var i = 1; i <= 2; i++)
-  // {
-  //   frames4.push(PIXI.Texture.fromFrame("treasure" + i + ".png"));
-  // }
+  var frames4 = [];
+  for(var i = 1; i <= 2; i++)
+  {
+    frames4.push(PIXI.Texture.fromFrame("treasure" + i + ".png"));
+  }
 
-  // var frames5 = [];
-  // for(var i = 3; i <= 4; i++)
-  // {
-  //   frames5.push(PIXI.Texture.fromFrame("treasure" + i + ".png"));
-  // }
+  var frames5 = [];
+  for(var i = 3; i <= 4; i++)
+  {
+    frames5.push(PIXI.Texture.fromFrame("treasure" + i + ".png"));
+  }
 
-  // var frames6 = [];
-  // for(var i = 5; i <= 6; i++)
-  // {
-  //   frames6.push(PIXI.Texture.fromFrame("treasure" + i + ".png"));
-  // }
+  var frames6 = [];
+  for(var i = 5; i <= 6; i++)
+  {
+    frames6.push(PIXI.Texture.fromFrame("treasure" + i + ".png"));
+  }
 
 
   player = new PIXI.extras.MovieClip(frames);
@@ -484,38 +485,38 @@ function ready() {
 
   monster.play();
 
-  // treasure1 = new PIXI.extras.MovieClip(frames4);
-  // treasure1.animationSpeed = .03;
-  // treasure1.scale.set(3, 3);
-  // treasure1.position.x = 200;
-  // treasure1.position.y = 950;
+  treasure1 = new PIXI.extras.MovieClip(frames4);
+  treasure1.animationSpeed = .03;
+  treasure1.scale.set(3, 3);
+  treasure1.position.x = 200;
+  treasure1.position.y = 950;
 
-  // treasure1.play();
+  treasure1.play();
 
-  // treasure2 = new PIXI.extras.MovieClip(frames5);
-  // treasure2.animationSpeed = .03;
-  // treasure2.scale.set(3, 3);
-  // treasure2.position.x = 950;
-  // treasure2.position.y = 240;
+  treasure2 = new PIXI.extras.MovieClip(frames5);
+  treasure2.animationSpeed = .03;
+  treasure2.scale.set(3, 3);
+  treasure2.position.x = 950;
+  treasure2.position.y = 240;
 
-  // treasure2.play();
+  treasure2.play();
 
-  // treasure3 = new PIXI.extras.MovieClip(frames6);
-  // treasure3.animationSpeed = .03;
-  // treasure3.scale.set(3, 3);
-  // treasure3.position.x = 850;
-  // treasure3.position.y = 950;
+  treasure3 = new PIXI.extras.MovieClip(frames6);
+  treasure3.animationSpeed = .03;
+  treasure3.scale.set(3, 3);
+  treasure3.position.x = 850;
+  treasure3.position.y = 950;
 
-  // treasure3.play();
+  treasure3.play();
 
 
   var entity_layer = world.getObject("GameObjects");
   entity_layer.addChild(player);
   entity_layer.addChild(boat);
   entity_layer.addChild(monster);
-  // entity_layer.addChild(treasure1);
-  // entity_layer.addChild(treasure2);
-  // entity_layer.addChild(treasure3);
+  entity_layer.addChild(treasure1);
+  entity_layer.addChild(treasure2);
+  entity_layer.addChild(treasure3);
 
 
   animate();
