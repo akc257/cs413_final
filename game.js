@@ -320,10 +320,16 @@ function ready() {
   }
 
   var frames2 = [];
-    for( var i = 1; i <=3; i++)
-    {
-      frames2.push(PIXI.Texture.fromFrame("boat_petty" + i + ".png"));
-    }
+  for( var i = 1; i <=3; i++)
+  {
+    frames2.push(PIXI.Texture.fromFrame("boat_petty" + i + ".png"));
+  }
+  
+  var frames3 = [];
+  for(var i = 1; i <= 2; i++)
+  {
+    frames2.push(PIXI.Texture.fromFrame("monster" + i + ".png"));
+  }
 
   player = new PIXI.extras.MovieClip(frames);
   player.animationSpeed = .1;
