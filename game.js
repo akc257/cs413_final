@@ -13,7 +13,8 @@ gameport.appendChild(renderer.view);
 var stage = new PIXI.Container();
 
 // Scene objects get loaded in the ready function
-var playerUp, playerDown, playerRight, playerLeft;
+var keyUp, keyDown, keyRight, keyLeft, playerTouch = false, ridingBoat = false;
+var onWater, onIsland;
 var world;
 var bool;
 
@@ -58,29 +59,106 @@ start_screen_button.on('mousedown', mouseStartHandler);
 
 function gameloop() {
         movePlayer();
+        moveBoat();
+}
+
+//method checks if player is trying to get on boat
+function isBoatTouching() {
+  if( Math.abs( player.position.x - boat.position.x ) < 20 &&
+      Math.abs( player.position.y - boat.position.y ) < 20 ) {
+      playerTouch = true;
+      ridingBoat = true;
+    }
+  else{
+    playerTouch = false;
+    ridingBoat= false;
+  }
+
 }
 
 
 // movePlayer function makes smoother movement
 function movePlayer() {
+    onIsland = ( player.position.x >= 166 &&  player.position.x <= 346) && (player.position.y >= 210 && player.position.y <= 406);
         // top wall
-      if(playerUp && player.position.y > 112) {
-          player.position.y -= 2;
+    if( !ridingBoat || onIsland)
+    {
+        if(keyUp && player.position.y > 210) {
+            player.position.y -= 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+          // bottom wall
+        if(keyDown && player.position.y < 400) {
+            player.position.y += 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+          // left wall
+        if(keyLeft && player.position.x > 166) {
+            player.position.x -= 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+          // right wall
+        if(keyRight && player.position.x < 346) {
+            player.position.x += 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+    }
+}
+// movePlayer function makes smoother movement
+function moveBoat() {
+      isBoatTouching();
+
+      onWater = ( boat.position.x <= 196 ||  boat.position.x >= 344) || (boat.position.y <= 240 || boat.position.y >= 394);
+              // top wall
+      if(keyUp && boat.position.y > 112 && playerTouch) {
+          if( onWater ) {
+              player.position.y -= 2;
+              boat.position.y -= 2;
+              // if( !(boat.position.y <= 210 || boat.position.y >= 400) )
+              // {
+              //   boat.position.y += 2;
+              // }
+              console.log("Boat: " + boat.position.x + ", " + boat.position.y);
+          }
       }
         // bottom wall
-      if(playerDown && player.position.y < 1136) {
-          player.position.y += 2;
+      if(keyDown && player.position.y < 1136 && playerTouch) {
+          if(onWater) {
+              player.position.y += 2;
+              boat.position.y += 2;
+              // if( !(boat.position.y <= 210 || boat.position.y >= 400) )
+              // {
+              //   boat.position.y -= 2;
+              // }
+              console.log("Boat: " + boat.position.x + ", " + boat.position.y);
+          }
       }
         // left wall
-      if(playerLeft && player.position.x > 112) {
-          player.position.x -= 2;
+      if(keyLeft && player.position.x > 112 && playerTouch) {
+          if( onWater) {
+              player.position.x -= 2;
+              boat.position.x -= 2;
+              // if( !( boat.position.x <= 166 ||  boat.position.x >= 346) )
+              // {
+              //   boat.position.x += 2;
+              // }
+              console.log("Boat: " + boat.position.x + ", " + boat.position.y);
+
+          }
       }
         // right wall
-      if(playerRight && player.position.x < 1136) {
-          player.position.x += 2;
+      if(keyRight && player.position.x < 1136 && playerTouch) {
+          if( onWater ) {
+              player.position.x += 2;
+              boat.position.x += 2;
+              // if( !( boat.position.x <= 166 ||  boat.position.x >= 346) )
+              // {
+              //   boat.position.x -= 2;
+              // }
+              console.log("Boat: " + boat.position.x + ", " + boat.position.y);
+          }
       }
 }
-
 
 var enemyProjectileSpeed = 1.5;
 
@@ -188,32 +266,32 @@ function updateScore()
 function keydownEventHandler(e) {
     // key movement for player up, down, left, right
   if (e.keyCode == 87) { // W key
-    playerUp = true;
+    keyUp = true;
   }
   if (e.keyCode == 83) { // S key
-    playerDown = true;
+    keyDown = true;
   }
   if (e.keyCode == 65) { // A key
-    playerLeft = true;
+    keyLeft = true;
   }
   if (e.keyCode == 68) { // D key
-    playerRight = true;
+    keyRight = true;
   }
 }
 
 // key up handlers for player not moving
 function keyupEventHandler(e) {
   if (e.keyCode == 87) { // W key
-    playerUp = false;
+    keyUp = false;
   }
   if (e.keyCode == 83) { // S key
-    playerDown = false;
+    keyDown = false;
   }
   if (e.keyCode == 65) { // A key
-    playerLeft = false;
+    keyLeft = false;
   }
   if (e.keyCode == 68) { // D key
-    playerRight = false;
+    keyRight = false;
   }
 }
 
@@ -227,6 +305,7 @@ PIXI.loader
   .add('map_json', 'map.json')
   .add('map', 'map.png')
   .add('assets.json')
+  .add('assets_boat.json')
   .load(ready);
 
 function ready() {
@@ -240,18 +319,33 @@ function ready() {
     frames.push(PIXI.Texture.fromFrame("astro" + i + ".png"));
   }
 
+  var frames2 = [];
+    for( var i = 1; i <=3; i++)
+    {
+      frames2.push(PIXI.Texture.fromFrame("boat_petty" + i + ".png"));
+    }
+
   player = new PIXI.extras.MovieClip(frames);
   player.animationSpeed = .1;
 
   // orient player
   player.scale.set(0.1, 0.1);
-  player.position.x = 350;
-  player.position.y = 200;
+  player.position.x = 240;
+  player.position.y = 220;
 
   player.play();
 
+  boat = new PIXI.extras.MovieClip(frames2);
+  boat.animationSpeed = .1;
+  boat.scale.set(0.15, 0.15);
+  boat.position.x = 346;
+  boat.position.y = 200;
+
+  boat.play();
+
   var entity_layer = world.getObject("GameObjects");
   entity_layer.addChild(player);
+  entity_layer.addChild(boat);
 
   animate();
   update();

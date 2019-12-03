@@ -1,0 +1,36 @@
+{"frames": {
+
+"boat_petty1.png":
+{
+	"frame": {"x":0,"y":0,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"boat_petty2.png":
+{
+	"frame": {"x":400,"y":0,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"boat_petty3.png":
+{
+	"frame": {"x":800,"y":0,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "assets_boat.png",
+	"format": "RGBA8888",
+	"size": {"w":1200,"h":400},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:e7e8482217c10434f01d37a176b5224f:8071eda1cce0f04f2823b91edc9b2d4d:2b3742ee3cac20c018b0f4a478546113$"
+}
+}
