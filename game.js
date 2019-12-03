@@ -295,43 +295,22 @@ function moveEnemy() {
   onIsland3 = ( player.position.x >= 116 &&  player.position.x <= 314) && (player.position.y >= 852 && player.position.y <= 1044);
   onIsland4 = ( player.position.x >= 792 &&  player.position.x <= 1036) && (player.position.y >= 898 && player.position.y <= 1078);
 
-  if( player.onIsland1 )
+  if( onIsland1 )
   {
-    createjs.Tween.get(monster.position.position).to({x: player.position.x, y: player.position.y}, 500);
+    createjs.Tween.get(monster.position).to({x: player.position.x, y: player.position.y}, 500);
   }
 
-  elif( player.onIsland2 )
+  else if( onIsland2 )
   {
-    createjs.Tween.get(monster.position.position).to({x: player.position.x, y: player.position.y}, 500);
-
-  }
-
-  elif( player.onIsland3 )
-  {
-    createjs.Tween.get(monster.position.position).to({x: player.position.x, y: player.position.y}, 500);
+    createjs.Tween.get(monster.position).to({x: player.position.x, y: player.position.y}, 500);
 
   }
 
+  else if( onIsland3 )
+  {
+    createjs.Tween.get(monster.position).to({x: player.position.x, y: player.position.y}, 500);
 
-
-
-
-  // // move the enemy right
-  // if(monster.position.x < player.position.x) {
-  //   monster.position.x = monster.position.x + 1;;
-  // }
-  // // move the enemy left
-  // else if(monster.position.x > player.position.x) {
-  //   monster.position.x = monster.position.x - 1;
-  // }
-  // // move the enemy down
-  // if(monster.position.y < player.position.y) {
-  //   monster.position.y = monster.position.y + 1;
-  // }
-  // // move the enemy up
-  // else if(monster.position.y > player.position.y) {
-  //   monster.position.y = monster.position.y - 1;
-  // }
+  }
 }
 
 //function to collect trophy
@@ -531,12 +510,14 @@ function animate(timestamp) {
   update_camera();
   renderer.render(stage);
 
+
   if( count == 3 )
   {
     stage.removeChild(world);
     stage.addChild(end_screen);
   }
 }
+setInterval(moveEnemy, 500);
 
 // update function to control player movement in game loop
 function update(){
