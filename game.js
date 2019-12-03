@@ -272,29 +272,53 @@ function moveBoat() {
       }
 }
 
-var enemyProjectileSpeed = 1.5;
 
 // Function: moveEnemy()
 // Desc: Move enemy slightly closer to the player
-function moveEnemy(enemy) {
-  enemy.rotation -= 0.02;
+function moveEnemy() {
+  
+  onIsland1 = ( player.position.x >= 166 &&  player.position.x <= 346) && (player.position.y >= 210 && player.position.y <= 406);
+  onIsland2 = ( player.position.x >= 838 &&  player.position.x <= 1084) && (player.position.y >= 130 && player.position.y <= 308);
+  onIsland3 = ( player.position.x >= 116 &&  player.position.x <= 314) && (player.position.y >= 852 && player.position.y <= 1044);
+  onIsland4 = ( player.position.x >= 792 &&  player.position.x <= 1036) && (player.position.y >= 898 && player.position.y <= 1078);
 
-  // move the enemy right
-  if(enemy.position.x < player.position.x) {
-    enemy.position.x = enemy.position.x + 1 * enemyProjectileSpeed;
+  if( player.onIsland1 )
+  {
+    createjs.Tween.get(monster.position.position).to({x: player.position.x, y: player.position.y}, 500);
   }
-  // move the enemy left
-  else if(enemy.position.x > player.position.x) {
-    enemy.position.x = enemy.position.x - 1 * enemyProjectileSpeed;
+
+  elif( player.onIsland2 )
+  {
+    createjs.Tween.get(monster.position.position).to({x: player.position.x, y: player.position.y}, 500);
+
   }
-  // move the enemy down
-  if(enemy.position.y < player.position.y) {
-    enemy.position.y = enemy.position.y + 1 * enemyProjectileSpeed;
+
+  elif( player.onIsland3 )
+  {
+    createjs.Tween.get(monster.position.position).to({x: player.position.x, y: player.position.y}, 500);
+
   }
-  // move the enemy up
-  else if(enemy.position.y > player.position.y) {
-    enemy.position.y = enemy.position.y - 1 * enemyProjectileSpeed;
-  }
+
+
+
+
+
+  // // move the enemy right
+  // if(monster.position.x < player.position.x) {
+  //   monster.position.x = monster.position.x + 1;;
+  // }
+  // // move the enemy left
+  // else if(monster.position.x > player.position.x) {
+  //   monster.position.x = monster.position.x - 1;
+  // }
+  // // move the enemy down
+  // if(monster.position.y < player.position.y) {
+  //   monster.position.y = monster.position.y + 1;
+  // }
+  // // move the enemy up
+  // else if(monster.position.y > player.position.y) {
+  //   monster.position.y = monster.position.y - 1;
+  // }
 }
 
 //Collision Detection & monster following player movement
@@ -413,6 +437,7 @@ PIXI.loader
   .add('map', 'map.png')
   .add('assets.json')
   .add('assets_boat.json')
+  .add('assets_treasure.json')
   .load(ready);
 
 function ready() {
@@ -438,23 +463,23 @@ function ready() {
     frames3.push(PIXI.Texture.fromFrame("monster" + i + ".png"));
   }
 
-  // var frames4 = [];
-  // for(var i = 1; i <= 2; i++)
-  // {
-  //   frames4.push(PIXI.Texture.fromFrame("treasure" + i + ".png"));
-  // }
+  var frames4 = [];
+  for(var i = 1; i <= 2; i++)
+  {
+    frames4.push(PIXI.Texture.fromFrame("treasure" + i + ".png"));
+  }
 
-  // var frames5 = [];
-  // for(var i = 3; i <= 4; i++)
-  // {
-  //   frames5.push(PIXI.Texture.fromFrame("treasure" + i + ".png"));
-  // }
+  var frames5 = [];
+  for(var i = 3; i <= 4; i++)
+  {
+    frames5.push(PIXI.Texture.fromFrame("treasure" + i + ".png"));
+  }
 
-  // var frames6 = [];
-  // for(var i = 5; i <= 6; i++)
-  // {
-  //   frames6.push(PIXI.Texture.fromFrame("treasure" + i + ".png"));
-  // }
+  var frames6 = [];
+  for(var i = 5; i <= 6; i++)
+  {
+    frames6.push(PIXI.Texture.fromFrame("treasure" + i + ".png"));
+  }
 
 
   player = new PIXI.extras.MovieClip(frames);
@@ -484,38 +509,38 @@ function ready() {
 
   monster.play();
 
-  // treasure1 = new PIXI.extras.MovieClip(frames4);
-  // treasure1.animationSpeed = .03;
-  // treasure1.scale.set(3, 3);
-  // treasure1.position.x = 200;
-  // treasure1.position.y = 950;
+  treasure1 = new PIXI.extras.MovieClip(frames4);
+  treasure1.animationSpeed = .03;
+  treasure1.scale.set(3, 3);
+  treasure1.position.x = 200;
+  treasure1.position.y = 950;
 
-  // treasure1.play();
+  treasure1.play();
 
-  // treasure2 = new PIXI.extras.MovieClip(frames5);
-  // treasure2.animationSpeed = .03;
-  // treasure2.scale.set(3, 3);
-  // treasure2.position.x = 950;
-  // treasure2.position.y = 240;
+  treasure2 = new PIXI.extras.MovieClip(frames5);
+  treasure2.animationSpeed = .03;
+  treasure2.scale.set(3, 3);
+  treasure2.position.x = 950;
+  treasure2.position.y = 240;
 
-  // treasure2.play();
+  treasure2.play();
 
-  // treasure3 = new PIXI.extras.MovieClip(frames6);
-  // treasure3.animationSpeed = .03;
-  // treasure3.scale.set(3, 3);
-  // treasure3.position.x = 850;
-  // treasure3.position.y = 950;
+  treasure3 = new PIXI.extras.MovieClip(frames6);
+  treasure3.animationSpeed = .03;
+  treasure3.scale.set(3, 3);
+  treasure3.position.x = 850;
+  treasure3.position.y = 950;
 
-  // treasure3.play();
+  treasure3.play();
 
 
   var entity_layer = world.getObject("GameObjects");
   entity_layer.addChild(player);
   entity_layer.addChild(boat);
   entity_layer.addChild(monster);
-  // entity_layer.addChild(treasure1);
-  // entity_layer.addChild(treasure2);
-  // entity_layer.addChild(treasure3);
+  entity_layer.addChild(treasure1);
+  entity_layer.addChild(treasure2);
+  entity_layer.addChild(treasure3);
 
 
   animate();
@@ -531,13 +556,13 @@ function animate(timestamp) {
   update_camera();
   renderer.render(stage);
 
-  if(stage == start_screen)
-  {
-    checkForEnemyHit(player, monster);
-    moveEnemy(enemy);
+  // if(stage == world)
+  // {
+  //   // checkForEnemyHit(player, monster);
+  //   moveEnemy();
 
-    checkForItemCollect(player, treasure);
-  }
+  //   checkForItemCollect(player, treasure);
+  // }
 }
 
 // update function to control player movement in game loop
