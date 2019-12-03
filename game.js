@@ -44,7 +44,7 @@ start_screen.addChild(start_screen_bg);
 var end_screen = new PIXI.Container();
 
 var end_screen_bg = new PIXI.Sprite(
-  PIXI.Texture.fromImage("end_screen.png") );
+  PIXI.Texture.fromImage("endScreen.png") );
 
 end_screen.addChild(end_screen_bg);
 
@@ -106,7 +106,6 @@ function findQuadrant()
     quadrant = 3;
   }
 }
-
 
 // movePlayer function handles characters movement within an islands bounds
 function movePlayer() {
