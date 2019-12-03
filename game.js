@@ -117,6 +117,8 @@ function findQuadrant()
 function movePlayer() {
   isBoatTouching();
   findQuadrant();
+
+  //check win conditions
   pickUpTreasure1();
   pickUpTreasure2();
   pickUpTreasure3();
@@ -582,6 +584,7 @@ function animate(timestamp) {
   update_camera();
   renderer.render(stage);
 
+  //continuously check enemy bounds
   bumpInToEnemy();
 
   if( count == 3 )
