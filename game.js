@@ -351,9 +351,9 @@ function ready() {
 
   monster = new PIXI.extras.MovieClip(frames3);
   monster.animationSpeed = .1;
-  monster.scale.set(0.15, 0.15);
-  monster.position.x = 346;
-  monster.position.y = 200;
+  monster.scale.set(2, 2);
+  monster.position.x = 240;
+  monster.position.y = 220;
 
   monster.play();
 
