@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>4</int>
         <key>texturePackerVersion</key>
-        <string>5.1.0</string>
+        <string>5.2.0</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -26,7 +26,7 @@
             </struct>
         </array>
         <key>allowRotation</key>
-        <false/>
+        <true/>
         <key>shapeDebug</key>
         <false/>
         <key>dpi</key>
@@ -56,7 +56,7 @@
         <key>jxrCompressionLevel</key>
         <uint>0</uint>
         <key>ditherType</key>
-        <enum type="SettingsBase::DitherType">PngQuantLow</enum>
+        <enum type="SettingsBase::DitherType">NearestNeighbour</enum>
         <key>backgroundColor</key>
         <uint>0</uint>
         <key>libGdx</key>
@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../Project_2/assets.json</filename>
+                <filename></filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -181,27 +181,37 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">astro1.png</key>
-            <key type="filename">astro2.png</key>
-            <key type="filename">astro3.png</key>
+            <key type="filename">../../../../Desktop/astro1.png</key>
+            <key type="filename">../../../../Desktop/astro2.png</key>
+            <key type="filename">../../../../Desktop/astro3.png</key>
+            <key type="filename">../../../../Desktop/astro4.png</key>
+            <key type="filename">../../../../Desktop/monster1.png</key>
+            <key type="filename">../../../../Desktop/monster2.png</key>
+            <key type="filename">../../../../Desktop/projectile.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>84,84,169,169</rect>
+                <rect>4,4,8,8</rect>
                 <key>scale9Paddings</key>
-                <rect>84,84,169,169</rect>
+                <rect>4,4,8,8</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
         </map>
         <key>fileList</key>
         <array>
-            <filename>astro2.png</filename>
-            <filename>astro3.png</filename>
-            <filename>astro1.png</filename>
+            <filename>../../../../Desktop/astro1.png</filename>
+            <filename>../../../../Desktop/astro2.png</filename>
+            <filename>../../../../Desktop/astro3.png</filename>
+            <filename>../../../../Desktop/astro4.png</filename>
+            <filename>../../../../Desktop/monster1.png</filename>
+            <filename>../../../../Desktop/monster2.png</filename>
+            <filename>../../../../Desktop/projectile.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
