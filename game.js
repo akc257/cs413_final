@@ -404,18 +404,24 @@ function ready() {
   }
 
   var frames2 = [];
-    for( var i = 1; i <=3; i++)
-    {
-      frames2.push(PIXI.Texture.fromFrame("boat_petty" + i + ".png"));
-    }
+  for( var i = 1; i <=3; i++)
+  {
+    frames2.push(PIXI.Texture.fromFrame("boat_petty" + i + ".png"));
+  }
+
+  var frames3 = [];
+  for(var i = 1; i <= 2; i++)
+  {
+    frames3.push(PIXI.Texture.fromFrame("monster" + i + ".png"));
+  }
 
   player = new PIXI.extras.MovieClip(frames);
   player.animationSpeed = .1;
 
   // orient player
-  player.scale.set(0.1, 0.1);
-  player.position.x = 170;
-  player.position.y = 212;
+  player.scale.set(2, 2);
+  player.position.x = 240;
+  player.position.y = 220;
 
   player.play();
 
@@ -427,9 +433,18 @@ function ready() {
 
   boat.play();
 
+  monster = new PIXI.extras.MovieClip(frames3);
+  monster.animationSpeed = .1;
+  monster.scale.set(2, 2);
+  monster.position.x = 240;
+  monster.position.y = 220;
+
+  monster.play();
+
   var entity_layer = world.getObject("GameObjects");
   entity_layer.addChild(player);
   entity_layer.addChild(boat);
+  entity_layer.addChild(monster);
 
   animate();
   update();
