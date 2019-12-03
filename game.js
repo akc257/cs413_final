@@ -14,9 +14,10 @@ var stage = new PIXI.Container();
 
 // Scene objects get loaded in the ready function
 var keyUp, keyDown, keyRight, keyLeft, playerTouch = false, ridingBoat = false;
-var onWater, onIsland;
+var onWater1, onIsland1, onWater2, onIsland2, onWater3, onIsland3, onWater4, onIsland4;
 var world;
 var bool;
+var quadrant = 0;
 
 //add start screen to scene graph
 var start_screen = new PIXI.Container();
@@ -76,85 +77,196 @@ function isBoatTouching() {
 
 }
 
+//method tells which quadrant the character is currently in
+function findQuadrant()
+{
+  if( player.position.x < 488 && player.position.y < 626)
+  {
+    quadrant = 0;
+  }
+  else if( player.position.x > 488 && player.position.y < 626)
+  {
+    quadrant = 1;
+  }
+  else if( player.position.x < 488 && player.position.y > 626)
+  {
+    quadrant = 2;
+  }
+  else if( player.position.x > 488 && player.position.y > 626)
+  {
+    quadrant = 3;
+  }
+}
 
-// movePlayer function makes smoother movement
+
+// movePlayer function handles characters movement within an islands bounds
 function movePlayer() {
-    onIsland = ( player.position.x >= 166 &&  player.position.x <= 346) && (player.position.y >= 210 && player.position.y <= 406);
-        // top wall
-    if( !ridingBoat || onIsland)
+    isBoatTouching();
+    findQuadrant();
+
+    //all booleans check current characters position relative to bounds of island
+    onIsland1 = ( player.position.x >= 166 &&  player.position.x <= 346) && (player.position.y >= 210 && player.position.y <= 406);
+    onIsland2 = ( player.position.x >= 838 &&  player.position.x <= 1084) && (player.position.y >= 130 && player.position.y <= 308);
+    onIsland3 = ( player.position.x >= 116 &&  player.position.x <= 314) && (player.position.y >= 852 && player.position.y <= 1044);
+    onIsland4 = ( player.position.x >= 792 &&  player.position.x <= 1036) && (player.position.y >= 898 && player.position.y <= 1078);
+
+    //if in first island bounds and either not riding on boat or within island bounds.
+    if( (quadrant == 0) && (!ridingBoat || onIsland1))
     {
+      //move up
         if(keyUp && player.position.y > 210) {
             player.position.y -= 2;
             console.log(player.position.x + ", " + player.position.y);
         }
-          // bottom wall
+
+        //move down
         if(keyDown && player.position.y < 400) {
             player.position.y += 2;
             console.log(player.position.x + ", " + player.position.y);
         }
-          // left wall
+
+        //move left
         if(keyLeft && player.position.x > 166) {
             player.position.x -= 2;
             console.log(player.position.x + ", " + player.position.y);
         }
-          // right wall
+
+        //move right
         if(keyRight && player.position.x < 346) {
             player.position.x += 2;
             console.log(player.position.x + ", " + player.position.y);
         }
     }
+
+    //if in second island bounds and either not riding on boat or within island bounds.
+    else if( (quadrant == 1) && (!ridingBoat || onIsland2))
+    {
+        //move up
+        if(keyUp && player.position.y > 130) {
+            player.position.y -= 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+
+        //move down
+        if(keyDown && player.position.y < 302) {
+            player.position.y += 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+
+        //move left
+        if(keyLeft && player.position.x > 838) {
+            player.position.x -= 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+
+        //move right
+        if(keyRight && player.position.x < 1084) {
+            player.position.x += 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+    }
+
+    //if in third island bounds and either not riding on boat or within island bounds.
+    else if( (quadrant == 2) && (!ridingBoat || onIsland3))
+    {
+        //move up
+        if(keyUp && player.position.y > 852) {
+            player.position.y -= 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+
+        //move down
+        if(keyDown && player.position.y < 1038) {
+            player.position.y += 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+
+        //move left
+        if(keyLeft && player.position.x > 116) {
+            player.position.x -= 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+
+        //move right
+        if(keyRight && player.position.x < 314) {
+            player.position.x += 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+    }
+
+    //if in second island bounds and either not riding on boat or within island bounds.
+    else if( (quadrant == 3) && (!ridingBoat || onIsland4))
+    {
+        //move up
+        if(keyUp && player.position.y > 898) {
+            player.position.y -= 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+
+        //move down
+        if(keyDown && player.position.y < 1072) {
+            player.position.y += 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+
+        //move left
+        if(keyLeft && player.position.x > 792) {
+            player.position.x -= 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+
+        //move right
+        if(keyRight && player.position.x < 1036) {
+            player.position.x += 2;
+            console.log(player.position.x + ", " + player.position.y);
+        }
+    }
 }
-// movePlayer function makes smoother movement
+
+// moveBoat function handles characters movement and boat movement outside of island bounds
 function moveBoat() {
       isBoatTouching();
 
-      onWater = ( boat.position.x <= 196 ||  boat.position.x >= 344) || (boat.position.y <= 240 || boat.position.y >= 394);
-              // top wall
+      //on Water boolean makes sure boat position outside of all island bounds
+      onWater = (( boat.position.x <= 196 ||  boat.position.x >= 344) || (boat.position.y <= 240 || boat.position.y >= 386)) //island1
+                &&  (( boat.position.x <= 868 ||  boat.position.x >= 1082) || (boat.position.y <= 170 || boat.position.y >= 288)) //island2
+                && (( boat.position.x <= 146 ||  boat.position.x >= 312) || (boat.position.y <= 882 || boat.position.y >= 1024)) //island3
+                && (( boat.position.x <= 792 ||  boat.position.x >= 1034) || (boat.position.y <= 898 || boat.position.y >= 1058)); //island4
+
+      //move up
       if(keyUp && boat.position.y > 112 && playerTouch) {
           if( onWater ) {
               player.position.y -= 2;
               boat.position.y -= 2;
-              // if( !(boat.position.y <= 210 || boat.position.y >= 400) )
-              // {
-              //   boat.position.y += 2;
-              // }
               console.log("Boat: " + boat.position.x + ", " + boat.position.y);
           }
       }
-        // bottom wall
+
+      //move down
       if(keyDown && player.position.y < 1136 && playerTouch) {
           if(onWater) {
               player.position.y += 2;
               boat.position.y += 2;
-              // if( !(boat.position.y <= 210 || boat.position.y >= 400) )
-              // {
-              //   boat.position.y -= 2;
-              // }
               console.log("Boat: " + boat.position.x + ", " + boat.position.y);
           }
       }
-        // left wall
+
+      //move left
       if(keyLeft && player.position.x > 112 && playerTouch) {
           if( onWater) {
               player.position.x -= 2;
               boat.position.x -= 2;
-              // if( !( boat.position.x <= 166 ||  boat.position.x >= 346) )
-              // {
-              //   boat.position.x += 2;
-              // }
               console.log("Boat: " + boat.position.x + ", " + boat.position.y);
 
           }
       }
-        // right wall
+
+      //move right
       if(keyRight && player.position.x < 1136 && playerTouch) {
           if( onWater ) {
               player.position.x += 2;
               boat.position.x += 2;
-              // if( !( boat.position.x <= 166 ||  boat.position.x >= 346) )
-              // {
-              //   boat.position.x -= 2;
-              // }
+
               console.log("Boat: " + boat.position.x + ", " + boat.position.y);
           }
       }
@@ -319,7 +431,7 @@ function ready() {
   {
     frames2.push(PIXI.Texture.fromFrame("boat_petty" + i + ".png"));
   }
-  
+
   var frames3 = [];
   for(var i = 1; i <= 2; i++)
   {
