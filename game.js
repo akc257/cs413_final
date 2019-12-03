@@ -290,7 +290,7 @@ function moveBoat() {
 // Function: moveEnemy()
 // Desc: Move enemy slightly closer to the player
 function moveEnemy() {
-  
+
   onIsland1 = ( player.position.x >= 166 &&  player.position.x <= 346) && (player.position.y >= 210 && player.position.y <= 406);
   onIsland2 = ( player.position.x >= 838 &&  player.position.x <= 1084) && (player.position.y >= 130 && player.position.y <= 308);
   onIsland3 = ( player.position.x >= 116 &&  player.position.x <= 314) && (player.position.y >= 852 && player.position.y <= 1044);
@@ -456,17 +456,6 @@ function ready() {
   for(var i = 5; i <= 6; i++)
   {
     frames6.push(PIXI.Texture.fromFrame("treasure" + i + ".png"));
-
-  var frames5 = [];
-  for(var i = 3; i <= 4; i++)
-  {
-    frames5.push(PIXI.Texture.fromFrame("treasure" + i + ".png"));
-  }
-
-  var frames6 = [];
-  for(var i = 5; i <= 6; i++)
-  {
-    frames6.push(PIXI.Texture.fromFrame("treasure" + i + ".png"));
   }
 
   player = new PIXI.extras.MovieClip(frames);
@@ -542,16 +531,6 @@ function animate(timestamp) {
   requestAnimationFrame(animate);
   update_camera();
   renderer.render(stage);
-
-  // if(stage == world)
-  // {
-  //   // checkForEnemyHit(player, monster);
-  //   moveEnemy();
-
-  //   checkForItemCollect(player, treasure);
-  // }
-    checkForItemCollect(player, treasure);
-  }
 
   if( count == 3 )
   {
