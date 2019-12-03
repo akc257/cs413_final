@@ -17,6 +17,7 @@ var keyUp, keyDown, keyRight, keyLeft, playerTouch = false, ridingBoat = false;
 var onWater1, onIsland1, onWater2, onIsland2, onWater3, onIsland3, onWater4, onIsland4;
 var world;
 var bool;
+var entity_layer;
 var quadrant = 0, count = 0;
 
 //add start screen to scene graph
@@ -38,6 +39,14 @@ start_screen_button.position.y = 325;
 
 //add start screen background to start screen
 start_screen.addChild(start_screen_bg);
+
+//add start screen to scene graph
+var end_screen = new PIXI.Container();
+
+var end_screen_bg = new PIXI.Sprite(
+  PIXI.Texture.fromImage("end_screen.png") );
+
+end_screen.addChild(end_screen_bg);
 
 //functon to switch screen when start button is clicked on
 function mouseStartHandler(e)
@@ -475,7 +484,7 @@ function ready() {
   treasure3.play();
 
 
-  var entity_layer = world.getObject("GameObjects");
+  entity_layer = world.getObject("GameObjects");
   entity_layer.addChild(player);
   entity_layer.addChild(boat);
   entity_layer.addChild(monster);
@@ -504,7 +513,12 @@ function animate(timestamp) {
 
     checkForItemCollect(player, treasure);
   }
-  
+
+  if( count == 3 )
+  {
+    stage.removeChild(world);
+    stage.addChild(end_screen);
+  }
 }
 
 // update function to control player movement in game loop
