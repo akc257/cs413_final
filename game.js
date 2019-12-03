@@ -20,6 +20,10 @@ var bool;
 var entity_layer;
 var quadrant = 0, count = 0;
 
+//sounds to be called
+var noise;
+var ding;
+
 //add start screen to scene graph
 var start_screen = new PIXI.Container();
 stage.addChild(start_screen);
@@ -44,7 +48,9 @@ start_screen.addChild(start_screen_bg);
 var end_screen = new PIXI.Container();
 
 var end_screen_bg = new PIXI.Sprite(
-  PIXI.Texture.fromImage("endScreen.png") );
+  PIXI.Texture.fromImage("end_screen.png") );
+  end_screen_bg.scale.x = .5;
+  end_screen_bg.scale.y = .5;
 
 end_screen.addChild(end_screen_bg);
 
@@ -128,24 +134,28 @@ function movePlayer() {
   {
     //move up
       if(keyUp && player.position.y > 210) {
+          // noise.play();
           player.position.y -= 2;
           console.log(player.position.x + ", " + player.position.y);
       }
 
       //move down
       if(keyDown && player.position.y < 400) {
+          // noise.play();
           player.position.y += 2;
           console.log(player.position.x + ", " + player.position.y);
       }
 
       //move left
       if(keyLeft && player.position.x > 166) {
+          // noise.play();
           player.position.x -= 2;
           console.log(player.position.x + ", " + player.position.y);
       }
 
       //move right
       if(keyRight && player.position.x < 346) {
+          // noise.play();
           player.position.x += 2;
           console.log(player.position.x + ", " + player.position.y);
       }
@@ -156,24 +166,28 @@ function movePlayer() {
   {
       //move up
       if(keyUp && player.position.y > 130) {
+          // noise.play();
           player.position.y -= 2;
           console.log(player.position.x + ", " + player.position.y);
       }
 
       //move down
       if(keyDown && player.position.y < 302) {
+          // noise.play();
           player.position.y += 2;
           console.log(player.position.x + ", " + player.position.y);
       }
 
       //move left
       if(keyLeft && player.position.x > 838) {
+          // noise.play();
           player.position.x -= 2;
           console.log(player.position.x + ", " + player.position.y);
       }
 
       //move right
       if(keyRight && player.position.x < 1084) {
+          // noise.play();
           player.position.x += 2;
           console.log(player.position.x + ", " + player.position.y);
       }
@@ -184,24 +198,28 @@ function movePlayer() {
   {
       //move up
       if(keyUp && player.position.y > 852) {
+          // noise.play();
           player.position.y -= 2;
           console.log(player.position.x + ", " + player.position.y);
       }
 
       //move down
       if(keyDown && player.position.y < 1038) {
+          // noise.play();
           player.position.y += 2;
           console.log(player.position.x + ", " + player.position.y);
       }
 
       //move left
       if(keyLeft && player.position.x > 116) {
+          // noise.play();
           player.position.x -= 2;
           console.log(player.position.x + ", " + player.position.y);
       }
 
       //move right
       if(keyRight && player.position.x < 314) {
+          // noise.play();
           player.position.x += 2;
           console.log(player.position.x + ", " + player.position.y);
       }
@@ -212,24 +230,28 @@ function movePlayer() {
   {
       //move up
       if(keyUp && player.position.y > 898) {
+          // noise.play();
           player.position.y -= 2;
           console.log(player.position.x + ", " + player.position.y);
       }
 
       //move down
       if(keyDown && player.position.y < 1072) {
+          // noise.play();
           player.position.y += 2;
           console.log(player.position.x + ", " + player.position.y);
       }
 
       //move left
       if(keyLeft && player.position.x > 792) {
+          // noise.play();
           player.position.x -= 2;
           console.log(player.position.x + ", " + player.position.y);
       }
 
       //move right
       if(keyRight && player.position.x < 1036) {
+          // noise.play();
           player.position.x += 2;
           console.log(player.position.x + ", " + player.position.y);
       }
@@ -290,27 +312,51 @@ function moveBoat() {
 // Desc: Move enemy slightly closer to the player
 function moveEnemy() {
 
+  // island bounds
   onIsland1 = ( player.position.x >= 166 &&  player.position.x <= 346) && (player.position.y >= 210 && player.position.y <= 406);
   onIsland2 = ( player.position.x >= 838 &&  player.position.x <= 1084) && (player.position.y >= 130 && player.position.y <= 308);
   onIsland3 = ( player.position.x >= 116 &&  player.position.x <= 314) && (player.position.y >= 852 && player.position.y <= 1044);
   onIsland4 = ( player.position.x >= 792 &&  player.position.x <= 1036) && (player.position.y >= 898 && player.position.y <= 1078);
 
+  //move enemy if on island 1
   if( onIsland1 )
   {
-    createjs.Tween.get(monster.position).to({x: player.position.x, y: player.position.y}, 500);
+    createjs.Tween.get(monster.position).to({x: player.position.x, y: player.position.y}, 5000, createjs.Ease.bounceOut);
   }
 
+  //move enemy if on island 2
   else if( onIsland2 )
   {
-    createjs.Tween.get(monster.position).to({x: player.position.x, y: player.position.y}, 500);
+    createjs.Tween.get(monster.position).to({x: player.position.x, y: player.position.y}, 5000, createjs.Ease.bounceOut);
 
   }
 
+  //move enemy if on island 3
   else if( onIsland3 )
   {
-    createjs.Tween.get(monster.position).to({x: player.position.x, y: player.position.y}, 500);
+    createjs.Tween.get(monster.position).to({x: player.position.x, y: player.position.y}, 5000, createjs.Ease.bounceOut);
 
   }
+
+    //move enemy if on island 4
+    else if( onIsland4 )
+    {
+      createjs.Tween.get(monster.position).to({x: player.position.x, y: player.position.y}, 5000, createjs.Ease.bounceOut);
+
+    }
+}
+
+//function to fail
+function bumpInToEnemy() {
+  if( Math.abs( player.position.x - monster.position.x ) < 20 &&
+      Math.abs( player.position.y - monster.position.y ) < 20 ) {
+      stage.removeChild(world);
+      stage.addChild(end_screen);
+      player.position.x = 0;
+      player.position.y = 0;
+      boat.position.x = 0;
+      boat.position.y = 0;
+    }
 }
 
 //function to collect trophy
@@ -322,6 +368,7 @@ function pickUpTreasure1() {
         treasure1.position.y = 2000;
         entity_layer.removeChild(treasure1);
         count++;
+        // ding.play();
     }
 }
 
@@ -334,6 +381,7 @@ function pickUpTreasure2() {
         treasure2.position.y = 2000;
         entity_layer.removeChild(treasure2);
         count++;
+        // ding.play();
     }
 }
 
@@ -346,6 +394,7 @@ function pickUpTreasure3() {
         treasure3.position.y = 2000;
         entity_layer.removeChild(treasure3);
         count++;
+        // ding.play();
     }
 }
 // keydown handler booleans for button presses for moving player
@@ -459,7 +508,7 @@ function ready() {
   monster.animationSpeed = .03;
   monster.scale.set(3, 3);
   monster.position.x = 320;
-  monster.position.y = 220;
+  monster.position.y = 420;
 
   monster.play();
 
@@ -504,12 +553,36 @@ function ready() {
   bool = false;
 }
 
+//for some reason the audio code that worked previously wouldn't work with tiling
+// //code from Dr Palmer
+// PIXI.loader
+//   .add("recording.mp3")
+//   .load(heavy);
+//
+// //function to call noise
+// function heavy()
+// {
+//   noise = PIXI.audioManager.getAudio("recording.mp3");
+// }
+//
+// //code from Dr Palmer
+// PIXI.loader
+//   .add("ding.mp3")
+//   .load(steady);
+//
+// //function to call ding
+// function steady()
+// {
+//   ding = PIXI.audioManager.getAudio("ding.mp3");
+// }
+
 // function to animate player and move camera
 function animate(timestamp) {
   requestAnimationFrame(animate);
   update_camera();
   renderer.render(stage);
 
+  bumpInToEnemy();
 
   if( count == 3 )
   {
@@ -517,7 +590,7 @@ function animate(timestamp) {
     stage.addChild(end_screen);
   }
 }
-setInterval(moveEnemy, 500);
+setTimeout( setInterval(moveEnemy, 5000), 1000);
 
 // update function to control player movement in game loop
 function update(){
